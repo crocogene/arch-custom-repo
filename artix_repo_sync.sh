@@ -69,4 +69,6 @@ for PKG in "${PACKAGES[@]}"; do
     fi
 done
 
+find "$SCRIPT_DIR" -maxdepth 1 -type f -name "*.db" -delete
+
 rm "$SCRIPT_DIR/*.db" "$SCRIPT_DIR/*.files" 
