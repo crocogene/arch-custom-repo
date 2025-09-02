@@ -30,7 +30,7 @@ for PKG in "${PACKAGES[@]}"; do
     sudo pacman -Sw --noconfirm "$PKG"
 
     # Find the package files in pacman's cache
-    PKG_FILES=(/var/cache/pacman/pkg/${PKG}-*-*-${ARCH}.pkg.tar.zst)
+    mapfile -t PKG_FILES < <(find /var/cache/pacman/pkg -maxdepth 1 -type f -name "${PKG}-*-*-${ARCH}.pkg.tar.zst")
 
     if [[ ${#PKG_FILES[@]} -eq 0 ]]; then
         echo -e "  ${RED}Error: No cached package files found${NC}"
